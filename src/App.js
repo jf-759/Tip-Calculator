@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  // total = billAmount * tipPercent / 100 = ...
+  const [billAmount, setBillAmount] = useState(0)
+  // continue on..
+  // split = total / people
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input 
+        placeholder='Bill Amount'
+        value={billAmount}
+        // TODO: use parseInt or parseFloat to convert to number!
+        onInput={(e) => setBillAmount(parseFloat(e.target.value))}
+      />
+      <input />
+      <input />
+      <div>
+        {/* use .toFixed(2) to round to two decimal places */}
+        <p>Bill Amount: {billAmount.toFixed(2)}</p>
+        <p>Tip... total</p>
+        <p>Total... split</p>
+      </div>
     </div>
   );
 }
