@@ -11,7 +11,7 @@ function App() {
       <input 
         placeholder='Bill Amount'
         value={billAmount}
-        // TODO: use parseInt or parseFloat to convert to number!
+        // T-uODO: use parseInt or parseFloat to convert to number!
         onInput={(e) => setBillAmount(parseFloat(e.target.value))}
       />
       <input />
