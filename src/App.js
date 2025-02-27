@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   // total = billAmount * tipPercent / 100 = ...
   const [billAmount, setBillAmount] = useState(0)
+  const [tipPercent, setTipPercent] = useState(0)
   // continue on..
   // split = total / people
   return (
@@ -14,7 +15,11 @@ function App() {
         // T-uODO: use parseInt or parseFloat to convert to number!
         onInput={(e) => setBillAmount(parseFloat(e.target.value))}
       />
-      <input />
+      <input 
+        placeholder='Tip Percentage'
+        value={tipPercent}
+        onInput={(e) => setTipPercent(parseFloat(e.target.value))}
+      />
       <input />
       <div>
         {/* use .toFixed(2) to round to two decimal places */}
