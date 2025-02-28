@@ -2,30 +2,56 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  // total = billAmount * tipPercent / 100 = ...
-  const [billAmount, setBillAmount] = useState(0)
-  const [tipPercent, setTipPercent] = useState(0)
-  // continue on..
-  // split = total / people
+  const [billAmount, setBillAmount] = useState('');
+  const[tipPercent, setTipPercent] = useState('');
+  const [numPeople, setNumPeople] = useState('1');
+
+  const bill = parseFloat(billAmount) || 0
+  const tip = parseFloat(tipPercent) || 0
+  const people = parseInt(numPeople) || 1
+
+  const tipAmount = (bill * tip) / 100;
+  const totalAmount = bill + tipAmount;
+  const splitAmount = totalAmount / people;
+
   return (
-    <div className="App">
-      <input 
-        placeholder='Bill Amount'
-        value={billAmount}
-        // T-uODO: use parseInt or parseFloat to convert to number!
-        onInput={(e) => setBillAmount(parseFloat(e.target.value))}
-      />
-      <input 
-        placeholder='Tip Percentage'
-        value={tipPercent}
-        onInput={(e) => setTipPercent(parseFloat(e.target.value))}
-      />
-      <input />
-      <div>
-        {/* use .toFixed(2) to round to two decimal places */}
-        <p>Bill Amount: {billAmount.toFixed(2)}</p>
-        <p>Tip... total</p>
-        <p>Total... split</p>
+    <div className="calculator-container">
+      <div className="calculator">
+        <h1 className="title">Tip Calculator</h1>
+        <div className="input-group">
+          <label>Bill Amount</label>
+          <input
+            type="number"
+            placeholder="Enter bill amount"
+            value={billAmount}
+            onChange={(e) => setBillAmount(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <label>Tip Percentage</label>
+          <input
+            type="number"
+            placeholder="Enter tip %"
+            value={tipPercent}
+            onChange={(e) => setTipPercent(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <label>Number of People</label>
+          <input
+            type="number"
+            placeholder="Enter number of people"
+            value={numPeople}
+            onChange={(e) => setNumPeople(e.target.value)}
+            min="1"
+          />
+        </div>
+      </div>
+
+      <div className="results-container">
+        <p>Tip Amount: ${tipAmount.toFixed(2)}</p>
+        <p>Total Amount: ${totalAmount.toFixed(2)}</p>
+        <p>Amount per Person: ${splitAmount.toFixed(2)}</p>
       </div>
     </div>
   );
